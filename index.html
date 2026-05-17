@@ -304,8 +304,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 20p
       <div class="nav-cat" onclick="filterCat('Stocks')">Stocks</div>
       <div class="nav-cat" onclick="filterCat('Energy')">Energy</div>
       <div class="nav-cat" onclick="filterCat('Technology')">Technology</div>
-      <div class="nav-cat" onclick="filterCat('AI People')">🤖 AI People</div>
-      <div class="nav-cat" onclick="showWhaleTracker()">🐋 Whale Tracker</div>
       <div class="nav-cat" onclick="showPage('about')">About</div>
       <div class="nav-cat" onclick="showPage('contact')">Contact</div>
     </div>
@@ -366,24 +364,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 20p
 
 <!-- MAIN CONTENT -->
 <main id="mainContent">
-
-  <!-- WHALE TRACKER PAGE -->
-  <div id="whale-page" style="display:none;margin-bottom:40px;">
-    <span class="back-btn" onclick="showHome()">← Back to News</span>
-    <div class="section-title" style="margin-top:0;">
-      🐋 Whale Tracker
-      <span style="display:flex;align-items:center;gap:8px;">
-        <span style="width:7px;height:7px;background:#00ff88;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;"></span>
-        <span id="whaleLastUpdatePage" style="font-size:10px;color:var(--muted);">Live</span>
-        <span onclick="fetchWhales()" style="cursor:pointer;color:var(--accent);font-size:11px;">↻ Refresh</span>
-      </span>
-    </div>
-    <div style="margin-bottom:16px;color:var(--muted);font-size:12px;font-family:'Courier New',monospace;">Real-time large crypto transactions — updated every 2 minutes</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;" id="whaleGridPage">
-      <div class="loading" style="padding:20px;font-size:13px;">Loading whale transactions...</div>
-    </div>
-  </div>
-
   <!-- HOME VIEW -->
   <div id="home-view">
     <!-- HERO -->
@@ -608,7 +588,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 20p
         <a onclick="filterCat('DeFi')">DeFi</a>
         <a onclick="filterCat('NFTs')">NFTs</a>
         <a onclick="filterCat('Altcoins')">Altcoins</a>
-        <a onclick="filterCat('AI People')">AI People</a>
         <a onclick="filterCat('Politics')">Politics</a>
         <a onclick="filterCat('Stocks')">Stocks</a>
         <a onclick="filterCat('Technology')">Technology</a>
@@ -665,7 +644,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 20p
     <div class="admin-tabs">
       <button class="admin-tab active" onclick="adminTab('add')">+ New Article</button>
       <button class="admin-tab" onclick="adminTab('manage')">Manage Posts</button>
-      <button class="admin-tab" onclick="adminTab('stats')">📊 View Stats</button>
     </div>
     <button class="close-admin" onclick="closeAdmin()">✕ Exit Dashboard</button>
   </div>
@@ -691,7 +669,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 20p
           <option>Stocks</option>
           <option>Energy</option>
           <option>Technology</option>
-          <option>AI People</option>
           <option>News</option>
         </select>
       </div>
@@ -715,12 +692,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 20p
     <div id="tab-manage" style="display:none;">
       <div class="section-title" style="margin-bottom:24px;">All Articles <span id="postCount"></span></div>
       <div id="adminPostList"></div>
-    </div>
-
-    <!-- STATS -->
-    <div id="tab-stats" style="display:none;">
-      <div class="section-title" style="margin-bottom:24px;">Article View Stats</div>
-      <div id="adminStatsList"></div>
     </div>
   </div>
 </div>
@@ -985,7 +956,7 @@ function cardHTML(p){
 }
 
 function catEmoji(cat){
-  const m = {Bitcoin:'₿',Ethereum:'Ξ',DeFi:'🔷',NFTs:'🖼',Altcoins:'🪙',Analysis:'📊',Politics:'🏛',Stocks:'📈',Energy:'⚡',Technology:'🤖','AI People':'🧠',News:'📰'};
+  const m = {Bitcoin:'₿',Ethereum:'Ξ',DeFi:'🔷',NFTs:'🖼',Altcoins:'🪙',Analysis:'📊',Politics:'🏛',Stocks:'📈',Energy:'⚡',Technology:'🤖',News:'📰'};
   return m[cat] || '📰';
 }
 
@@ -999,7 +970,7 @@ function timeAgo(iso){
 
 // ===== CAT FILTERS =====
 function buildCatFilters(){
-  const cats = ['All','Bitcoin','Ethereum','Altcoins','DeFi','NFTs','Analysis','Politics','Stocks','Energy','Technology','AI People','News'];
+  const cats = ['All','Bitcoin','Ethereum','Altcoins','DeFi','NFTs','Analysis','Politics','Stocks','Energy','Technology','News'];
   document.getElementById('catFilters').innerHTML = cats.map(c=>
     `<button class="cat-btn ${c===currentCat?'active':''}" onclick="filterCat('${c}')">${c}</button>`
   ).join('');
@@ -1021,15 +992,8 @@ function searchNews(){
 function openArticle(id){
   const p = allPosts.find(x=>x.id===id);
   if(!p) return;
-
-  // Track view count
-  const views = JSON.parse(localStorage.getItem('a7l_views') || '{}');
-  views[id] = (views[id] || 0) + 1;
-  localStorage.setItem('a7l_views', JSON.stringify(views));
-
   document.getElementById('home-view').style.display = 'none';
   document.getElementById('article-view').style.display = 'block';
-  document.getElementById('whale-page').style.display = 'none';
   hideAllPages();
   window.scrollTo(0,0);
   document.getElementById('articleContent').innerHTML = `
@@ -1064,27 +1028,24 @@ const SITE_URL = 'https://a7linsights.vercel.app';
 
 function shareX(id){
   const p = allPosts.find(x=>x.id===id);
-  const url = SITE_URL + '#article-' + id;
-  window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(p.title + '\n\n' + url)}`);
+  window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(p.title + '\n\n' + SITE_URL)}`);
 }
 function shareTG(id){
   const p = allPosts.find(x=>x.id===id);
-  const url = SITE_URL + '#article-' + id;
-  window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(p.title)}`);
+  window.open(`https://t.me/share/url?url=${encodeURIComponent(SITE_URL)}&text=${encodeURIComponent(p.title)}`);
 }
 function copyArticleLink(id){
   const p = allPosts.find(x=>x.id===id);
-  const url = SITE_URL + '#article-' + id;
-  navigator.clipboard.writeText(p.title + '\n\n' + url).then(()=>alert('✅ Copied! Link includes article image.'));
+  navigator.clipboard.writeText(p.title + '\n\n' + SITE_URL).then(()=>alert('Copied!'));
 }
 function copyShareLink(type){
   let text = '';
   if(type === 'fear-greed'){
-    text = `🧠 Crypto Fear & Greed Index: ${marketData.fg||'--'} (${marketData.fgLabel||'--'})\n\nCheck live at: ${SITE_URL}`;
+    text = `🧠 Crypto Fear & Greed Index: ${marketData.fg||'--'} (${marketData.fgLabel||'--'})\n\n${SITE_URL}`;
   }
   if(type === 'liquidations'){
     const liq = document.getElementById('liqVal').textContent;
-    text = `💥 Crypto Liquidations (24h): ${liq}\n\nCheck live at: ${SITE_URL}`;
+    text = `💥 Crypto Liquidations (24h): ${liq}\n\n${SITE_URL}`;
   }
   navigator.clipboard.writeText(text).then(()=>alert('✅ Copied!'));
 }
@@ -1099,7 +1060,6 @@ function hideAllPages(){
 function showPage(name){
   document.getElementById('home-view').style.display = 'none';
   document.getElementById('article-view').style.display = 'none';
-  document.getElementById('whale-page').style.display = 'none';
   hideAllPages();
   const el = document.getElementById('page-'+name);
   if(el){ el.classList.add('active'); }
@@ -1109,23 +1069,10 @@ function showPage(name){
 function showHome(){
   document.getElementById('home-view').style.display = 'block';
   document.getElementById('article-view').style.display = 'none';
-  document.getElementById('whale-page').style.display = 'none';
   hideAllPages();
   buildCatFilters();
   renderHome();
   window.scrollTo(0,0);
-}
-
-function showWhaleTracker(){
-  document.getElementById('home-view').style.display = 'none';
-  document.getElementById('article-view').style.display = 'none';
-  document.getElementById('whale-page').style.display = 'block';
-  hideAllPages();
-  fetchWhales();
-  window.scrollTo(0,0);
-  document.querySelectorAll('.nav-cat').forEach(el=>{
-    el.classList.toggle('active', el.textContent.trim().includes('Whale Tracker'));
-  });
 }
 
 // ===== ADMIN =====
@@ -1154,12 +1101,10 @@ function closeAdmin(){
 function adminTab(tab){
   document.getElementById('tab-add').style.display = tab==='add'?'block':'none';
   document.getElementById('tab-manage').style.display = tab==='manage'?'block':'none';
-  document.getElementById('tab-stats').style.display = tab==='stats'?'block':'none';
   document.querySelectorAll('.admin-tab').forEach((el,i)=>{
-    el.classList.toggle('active', (i===0&&tab==='add')||(i===1&&tab==='manage')||(i===2&&tab==='stats'));
+    el.classList.toggle('active', (i===0&&tab==='add')||(i===1&&tab==='manage'));
   });
   if(tab==='manage') renderAdminPosts();
-  if(tab==='stats') renderAdminStats();
 }
 
 function previewImg(){
@@ -1247,50 +1192,6 @@ function deletePost(id){
   renderHome();
 }
 
-function renderAdminStats(){
-  const views = JSON.parse(localStorage.getItem('a7l_views') || '{}');
-  const sorted = [...allPosts].sort((a,b)=>(views[b.id]||0)-(views[a.id]||0));
-  const total = Object.values(views).reduce((s,v)=>s+v,0);
-  document.getElementById('adminStatsList').innerHTML = `
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:20px;display:flex;gap:32px;">
-      <div><div style="font-size:11px;color:var(--muted);font-family:'Courier New',monospace;">TOTAL VIEWS</div><div style="font-size:28px;font-weight:800;color:var(--accent);">${total.toLocaleString()}</div></div>
-      <div><div style="font-size:11px;color:var(--muted);font-family:'Courier New',monospace;">ARTICLES</div><div style="font-size:28px;font-weight:800;color:var(--text);">${allPosts.length}</div></div>
-    </div>
-    ${sorted.map((p,i)=>{
-      const v = views[p.id] || 0;
-      const pct = total ? Math.round((v/total)*100) : 0;
-      return `<div class="admin-post-row" style="flex-direction:column;align-items:stretch;gap:10px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;">
-          <div>
-            <div class="admin-post-title">${p.title}</div>
-            <div class="admin-post-meta">${p.cat} · ${timeAgo(p.date)}</div>
-          </div>
-          <div style="text-align:right;">
-            <div style="font-size:22px;font-weight:800;color:var(--accent);font-family:'Courier New',monospace;">${v.toLocaleString()}</div>
-            <div style="font-size:10px;color:var(--muted);">views · ${pct}%</div>
-          </div>
-        </div>
-        <div style="background:var(--bg3);border-radius:4px;height:4px;overflow:hidden;">
-          <div style="background:var(--accent);height:100%;width:${pct}%;transition:width .4s;"></div>
-        </div>
-      </div>`;
-    }).join('')}
-  `;
-}
-
-// ===== INIT =====
-buildCatFilters();
-renderHome();
-fetchMarketData();
-fetchWhales();
-setInterval(fetchMarketData, 60000);
-setInterval(fetchWhales, 120000);
-  const e = document.getElementById('nlEmail').value;
-  if(!e.includes('@')){ document.getElementById('nlMsg').innerHTML='<span style="color:#ef4444">Enter a valid email.</span>'; return; }
-  document.getElementById('nlMsg').innerHTML='<span style="color:var(--accent)">✓ Subscribed! Thank you.</span>';
-  document.getElementById('nlEmail').value='';
-}
-
 // ===== NEWSLETTER =====
 function subscribeNL(){
   const e = document.getElementById('nlEmail').value;
@@ -1301,18 +1202,21 @@ function subscribeNL(){
 
 // ===== WHALE TRACKER =====
 const WHALE_COINS = [
-  {id:'bitcoin',sym:'BTC',icon:'₿',color:'#F7931A',img:'https://assets.coingecko.com/coins/images/1/small/bitcoin.png'},
-  {id:'ethereum',sym:'ETH',icon:'Ξ',color:'#627EEA',img:'https://assets.coingecko.com/coins/images/279/small/ethereum.png'},
-  {id:'tether',sym:'USDT',icon:'₮',color:'#26A17B',img:'https://assets.coingecko.com/coins/images/325/small/Tether.png'},
-  {id:'ripple',sym:'XRP',icon:'✕',color:'#346AA9',img:'https://assets.coingecko.com/coins/images/44/small/xrp-symbol-white-128.png'},
-  {id:'solana',sym:'SOL',icon:'◎',color:'#9945FF',img:'https://assets.coingecko.com/coins/images/4128/small/solana.png'},
-  {id:'binancecoin',sym:'BNB',icon:'◈',color:'#F0B90B',img:'https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png'},
+  {id:'bitcoin',sym:'BTC',icon:'₿',color:'#F7931A'},
+  {id:'ethereum',sym:'ETH',icon:'Ξ',color:'#627EEA'},
+  {id:'tether',sym:'USDT',icon:'₮',color:'#26A17B'},
+  {id:'ripple',sym:'XRP',icon:'✕',color:'#346AA9'},
+  {id:'solana',sym:'SOL',icon:'◎',color:'#9945FF'},
+  {id:'binancecoin',sym:'BNB',icon:'◈',color:'#F0B90B'},
 ];
 
 let whalePrices = {};
 let whaleData = [];
 
 async function fetchWhales(){
+  const grid = document.getElementById('whaleGrid');
+  if(!grid) return;
+
   // Get current prices for USD conversion
   try{
     const pd = await fetchJSON('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,ripple,solana,binancecoin&vs_currencies=usd');
@@ -1333,6 +1237,7 @@ async function fetchWhales(){
   // For real data integrate: whale-alert.io API ($29/mo) or Etherscan large tx API
   whaleData = generateWhaleData();
   renderWhales();
+  document.getElementById('whaleLastUpdate').textContent = 'Updated ' + new Date().toLocaleTimeString();
 }
 
 function generateWhaleData(){
@@ -1369,30 +1274,26 @@ function generateWhaleData(){
 }
 
 function renderWhales(){
-  const gridHome = document.getElementById('whaleGrid');
-  const gridPage = document.getElementById('whaleGridPage');
-  if(!whaleData.length) return;
+  const grid = document.getElementById('whaleGrid');
+  if(!grid || !whaleData.length) return;
 
   const coinMap = {};
   WHALE_COINS.forEach(c=>{ coinMap[c.sym]=c; });
 
-  const html = whaleData.map(tx=>{
-    const coin = coinMap[tx.sym] || {icon:'◎',color:'#888',img:null};
+  grid.innerHTML = whaleData.map(tx=>{
+    const coin = coinMap[tx.sym] || {icon:'◎',color:'#888'};
     const usdStr = tx.usd >= 1e9 ? '$'+(tx.usd/1e9).toFixed(2)+'B'
                  : tx.usd >= 1e6 ? '$'+(tx.usd/1e6).toFixed(1)+'M'
                  : '$'+(tx.usd/1e3).toFixed(0)+'K';
     const amtStr = tx.amt >= 1e6 ? (tx.amt/1e6).toFixed(2)+'M'
                  : tx.amt >= 1e3 ? (tx.amt/1e3).toFixed(1)+'K'
                  : tx.amt.toLocaleString();
-    const shareText = `🐋 Whale Alert!\n${amtStr} ${tx.sym} moved (${usdStr})\n\nLive at: ${SITE_URL}#whale-tracker`;
-    const coinIconHTML = coin.img
-      ? `<img src="${coin.img}" style="width:24px;height:24px;border-radius:50%;object-fit:cover;" alt="${tx.sym}" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><span style="display:none;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;font-size:14px;background:${coin.color}22;color:${coin.color};">${coin.icon}</span>`
-      : `<span style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;background:${coin.color}22;color:${coin.color};">${coin.icon}</span>`;
+    const shareText = `🐋 Whale Alert!\n${amtStr} ${tx.sym} moved (${usdStr})\n\n${SITE_URL}`;
 
     return `<div class="whale-card ${tx.type}">
       <div class="whale-top">
         <div class="whale-coin">
-          <div class="whale-coin-icon" style="background:${coin.color}22;color:${coin.color};overflow:hidden;display:flex;align-items:center;justify-content:center;">${coinIconHTML}</div>
+          <div class="whale-coin-icon" style="background:${coin.color}22;color:${coin.color};">${coin.icon}</div>
           <span>${tx.sym}</span>
         </div>
         <span class="whale-type ${tx.type}">${tx.type.toUpperCase()}</span>
@@ -1410,15 +1311,6 @@ function renderWhales(){
       </div>
     </div>`;
   }).join('');
-
-  if(gridHome) gridHome.innerHTML = html;
-  if(gridPage) gridPage.innerHTML = html;
-
-  const timeStr = 'Updated ' + new Date().toLocaleTimeString();
-  const upHome = document.getElementById('whaleLastUpdate');
-  const upPage = document.getElementById('whaleLastUpdatePage');
-  if(upHome) upHome.textContent = timeStr;
-  if(upPage) upPage.textContent = timeStr;
 }
 
 function copyWhaleAlert(text){
@@ -1431,7 +1323,7 @@ renderHome();
 fetchMarketData();
 fetchWhales();
 setInterval(fetchMarketData, 60000);
-setInterval(fetchWhales, 120000);
+setInterval(fetchWhales, 120000); // refresh whales every 2 min
 </script>
 </body>
 </html>
