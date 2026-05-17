@@ -288,8 +288,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 20p
 <!-- MARKET BAR -->
 <div class="market-bar">
   <div class="market-bar-inner" id="marketBar">
-    <div class="mstat"><div class="mstat-label">Bitcoin</div><div class="mstat-val loading" id="btcPrice">--</div><div class="mstat-sub" id="btcChg">Loading...</div></div>
-    <div class="mstat"><div class="mstat-label">Ethereum</div><div class="mstat-val loading" id="ethPrice">--</div><div class="mstat-sub" id="ethChg">Loading...</div></div>
+    <div class="mstat"><div class="mstat-label">Bitcoin</div><div class="mstat-val loading" id="btcPrice">--</div><div class="mstat-sub" id="btcChg">Loading...</div><canvas id="btcChart" height="36" style="width:100%;margin-top:6px;opacity:.8;"></canvas></div>
+    <div class="mstat"><div class="mstat-label">Ethereum</div><div class="mstat-val loading" id="ethPrice">--</div><div class="mstat-sub" id="ethChg">Loading...</div><canvas id="ethChart" height="36" style="width:100%;margin-top:6px;opacity:.8;"></canvas></div>
     <div class="mstat"><div class="mstat-label">Market Cap</div><div class="mstat-val loading" id="mktCap">--</div><div class="mstat-sub" id="mktChg">Total</div></div>
     <div class="mstat"><div class="mstat-label">BTC Dom.</div><div class="mstat-val loading" id="btcDom">--</div><div class="mstat-sub">Dominance</div></div>
     <div class="mstat"><div class="mstat-label">Alt Dom.</div><div class="mstat-val loading" id="altDom">--</div><div class="mstat-sub">Altcoins</div></div>
@@ -388,78 +388,122 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 20p
   </div>
 
   <!-- PAGES -->
-  <div id="page-about">
+  <div id="page-about" style="display:none;">
     <div class="page-title">About A7L Insights</div>
     <div class="page-subtitle">Real Time Intelligence for the Crypto World</div>
     <div class="page-content">
-      <p>A7L Insights is a professional cryptocurrency and financial intelligence platform delivering real-time news, deep analysis, and market data to traders, investors, and enthusiasts worldwide.</p>
+      <p>Welcome to <strong>A7L Insights</strong> — a professional digital media platform delivering real-time intelligence across cryptocurrency markets, global finance, geopolitics, technology, and energy sectors.</p>
+      <p>Founded with a mission to democratize financial information, A7L Insights serves traders, investors, researchers, and enthusiasts who demand accurate, timely, and actionable market intelligence — 24 hours a day, 7 days a week.</p>
       <h2>Our Mission</h2>
-      <p>To provide accurate, timely, and actionable intelligence across cryptocurrency, geopolitics, technology, energy, and global financial markets — empowering our readers to make informed decisions.</p>
-      <h2>What We Cover</h2>
-      <p>Bitcoin & Ethereum price analysis, DeFi protocols, NFT markets, altcoin movements, macroeconomic trends, geopolitical developments affecting crypto markets, stock market insights, energy sector, and emerging technologies.</p>
-      <h2>Contact</h2>
-      <p>Business inquiries: huasinali733@gmail.com</p>
+      <p>We believe that access to quality financial information should not be limited to institutional investors. A7L Insights bridges the gap between complex market data and everyday readers, presenting it in a clear, digestible, and honest format.</p>
+      <p>Our editorial focus spans Bitcoin price analysis, Ethereum ecosystem developments, DeFi protocol updates, NFT market trends, altcoin movements, macroeconomic policy, geopolitical developments affecting crypto markets, global stock markets, energy commodities, and emerging technologies including artificial intelligence.</p>
+      <h2>What Makes Us Different</h2>
+      <p>Unlike traditional financial media, A7L Insights combines live market data with original editorial analysis. We do not publish sponsored price predictions or paid promotional content disguised as news. Our readers trust us because we prioritize accuracy over clicks.</p>
+      <p>Every article on A7L Insights is written to inform, not to promote. We clearly distinguish between news reporting and opinion/analysis, and we always remind our readers that nothing published here constitutes financial advice.</p>
+      <h2>Our Coverage Areas</h2>
+      <p><strong>Cryptocurrency:</strong> Bitcoin, Ethereum, altcoins, DeFi, NFTs, Web3, blockchain infrastructure, and crypto regulation worldwide.</p>
+      <p><strong>Global Markets:</strong> US stock markets, emerging market equities, commodities, foreign exchange, and macroeconomic trends.</p>
+      <p><strong>Geopolitics & Energy:</strong> Oil markets, energy transition, geopolitical events that move financial markets, central bank policy, and international trade.</p>
+      <p><strong>Technology:</strong> Artificial intelligence, fintech innovation, cybersecurity, and the intersection of technology with finance.</p>
+      <h2>Editorial Standards</h2>
+      <p>A7L Insights is committed to factual reporting. We verify information from multiple sources before publishing. When market conditions are uncertain or data is preliminary, we say so clearly. Corrections are published promptly when errors are identified.</p>
+      <h2>Contact Us</h2>
+      <p>For editorial inquiries, partnerships, or advertising opportunities, please reach us at: <a href="mailto:huasinali733@gmail.com" style="color:var(--accent);">huasinali733@gmail.com</a></p>
+      <p>Follow us on social media for breaking news alerts and market updates around the clock.</p>
     </div>
   </div>
 
-  <div id="page-contact">
+  <div id="page-contact" style="display:none;">
     <div class="page-title">Contact Us</div>
-    <div class="page-subtitle">Get in touch with A7L Insights</div>
+    <div class="page-subtitle">We'd love to hear from you</div>
     <div class="page-content">
-      <h2>Business Email</h2>
-      <p><a href="mailto:huasinali733@gmail.com" style="color:var(--accent);">huasinali733@gmail.com</a></p>
+      <p>Have a news tip, editorial question, or business inquiry? Reach out to the A7L Insights team using the contact information below. We aim to respond to all messages within 24 to 48 business hours.</p>
+      <h2>General & Editorial Inquiries</h2>
+      <p>Email: <a href="mailto:huasinali733@gmail.com" style="color:var(--accent);">huasinali733@gmail.com</a></p>
+      <p>For breaking news tips, corrections, or editorial feedback, please include "Editorial" in your subject line so we can prioritize your message appropriately.</p>
+      <h2>Advertising & Partnerships</h2>
+      <p>A7L Insights welcomes advertising partnerships from crypto exchanges, fintech companies, blockchain projects, and financial services providers. We offer display advertising, sponsored content (clearly labeled), and newsletter placements.</p>
+      <p>For advertising inquiries, email: <a href="mailto:huasinali733@gmail.com" style="color:var(--accent);">huasinali733@gmail.com</a> with subject line "Advertising Inquiry".</p>
       <h2>Social Media</h2>
-      <p>Follow us on Telegram, X (Twitter), LinkedIn, and Binance Square for the latest updates. Find all links at the top of our website.</p>
-      <h2>Response Time</h2>
-      <p>We aim to respond to all inquiries within 24–48 hours on business days.</p>
+      <p>Follow A7L Insights on our official social channels for real-time market updates, breaking news alerts, and market analysis:</p>
+      <p>• Telegram: @AliAsghar47<br>• X (Twitter): @aliasghar626262<br>• LinkedIn: A7L Insight<br>• Binance Square: A7L–CRYPTO</p>
+      <h2>DMCA & Copyright</h2>
+      <p>If you believe any content on A7L Insights infringes your copyright, please contact us at <a href="mailto:huasinali733@gmail.com" style="color:var(--accent);">huasinali733@gmail.com</a> with subject line "DMCA Notice" and include the specific content URL and proof of ownership. We will respond within 48 hours.</p>
     </div>
   </div>
 
-  <div id="page-privacy">
+  <div id="page-privacy" style="display:none;">
     <div class="page-title">Privacy Policy</div>
-    <div class="page-subtitle">Last updated: May 2026</div>
+    <div class="page-subtitle">Last updated: May 17, 2026</div>
     <div class="page-content">
-      <p>A7L Insights ("we", "us", "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website.</p>
-      <h2>Information We Collect</h2>
-      <p>We may collect your email address when you subscribe to our newsletter. We also collect anonymous usage data via analytics tools to improve our service.</p>
-      <h2>Use of Information</h2>
-      <p>Email addresses are used solely to send our newsletter. We do not sell, trade, or share your personal information with third parties.</p>
-      <h2>Cookies</h2>
-      <p>We use cookies to enhance your browsing experience and to display relevant advertisements through Google AdSense. You may disable cookies in your browser settings.</p>
-      <h2>Third-Party Advertising</h2>
-      <p>We use Google AdSense to display ads. Google may use cookies to serve ads based on your prior visits to our website. You can opt out via Google's Ad Settings.</p>
-      <h2>Contact</h2>
-      <p>For privacy concerns, contact us at huasinali733@gmail.com.</p>
+      <p>This Privacy Policy describes how A7L Insights ("we," "us," or "our") collects, uses, and shares information about you when you visit our website at a7linsights.vercel.app (the "Site"). By using the Site, you agree to the collection and use of information in accordance with this policy.</p>
+      <h2>1. Information We Collect</h2>
+      <p><strong>Information you provide:</strong> When you subscribe to our newsletter, you voluntarily provide your email address. We only use this to send you news updates and market analysis. You may unsubscribe at any time.</p>
+      <p><strong>Automatically collected information:</strong> When you visit our Site, we may automatically collect certain information about your device, including your IP address, browser type, operating system, referring URLs, pages visited, and time spent on pages. This data is collected in aggregate and is not linked to personally identifiable information.</p>
+      <h2>2. How We Use Your Information</h2>
+      <p>We use the information we collect to: operate and improve our website; send newsletters to subscribers who opt in; analyze usage patterns to improve content; display relevant advertisements through Google AdSense; and comply with legal obligations.</p>
+      <h2>3. Google AdSense & Cookies</h2>
+      <p>We use Google AdSense to display advertisements on our Site. Google AdSense uses cookies — small text files stored on your device — to serve ads based on your prior visits to our website and other sites on the internet.</p>
+      <p>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our Site and/or other sites on the Internet. You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" style="color:var(--accent);">Google Ad Settings</a>.</p>
+      <p>We also use cookies to remember your preferences (such as dark/light mode) and to analyze site traffic via analytics tools. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, some portions of our Site may not function properly.</p>
+      <h2>4. Third-Party Services</h2>
+      <p>We use the following third-party services which may collect data independently: Google AdSense (advertising), CoinGecko API (live crypto price data), Alternative.me (Fear & Greed Index). Each of these services has their own privacy policies governing data collection.</p>
+      <h2>5. Data Sharing</h2>
+      <p>We do not sell, trade, or otherwise transfer your personally identifiable information to third parties. This does not include trusted third parties who assist us in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential.</p>
+      <h2>6. Children's Privacy</h2>
+      <p>Our Site is not directed to individuals under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately.</p>
+      <h2>7. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page with an updated date. You are advised to review this Privacy Policy periodically for any changes.</p>
+      <h2>8. Contact</h2>
+      <p>If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:huasinali733@gmail.com" style="color:var(--accent);">huasinali733@gmail.com</a></p>
     </div>
   </div>
 
-  <div id="page-disclaimer">
+  <div id="page-disclaimer" style="display:none;">
     <div class="page-title">Disclaimer</div>
-    <div class="page-subtitle">Important Legal Notice</div>
+    <div class="page-subtitle">Important — Please Read Before Using This Site</div>
     <div class="page-content">
-      <p>The content published on A7L Insights is for informational and educational purposes only. It does not constitute financial, investment, legal, or tax advice.</p>
-      <h2>No Financial Advice</h2>
-      <p>Cryptocurrency and financial markets are highly volatile. Nothing published on this website should be construed as a recommendation to buy, sell, or hold any asset. Always do your own research (DYOR) and consult a licensed financial advisor before making investment decisions.</p>
-      <h2>Accuracy</h2>
-      <p>While we strive for accuracy, A7L Insights makes no warranties about the completeness, reliability, or accuracy of this information.</p>
-      <h2>Risk Warning</h2>
-      <p>Investing in cryptocurrency involves significant risk. You could lose all of your investment. Only invest what you can afford to lose.</p>
+      <p>The information published on A7L Insights is provided for general informational and educational purposes only. It does not constitute, and should not be treated as, financial advice, investment advice, trading advice, or any other type of advice.</p>
+      <h2>Not Financial Advice</h2>
+      <p>Nothing on this website — including articles, market data, price analysis, charts, commentary, or any other content — should be interpreted as a recommendation to buy, sell, hold, or otherwise deal in any financial instrument, including but not limited to cryptocurrencies, stocks, commodities, or foreign exchange.</p>
+      <p>Cryptocurrency markets are highly volatile and speculative in nature. The value of digital assets can increase or decrease dramatically in a very short period of time. Past performance is not indicative of future results. You should never invest money that you cannot afford to lose.</p>
+      <h2>Do Your Own Research (DYOR)</h2>
+      <p>Before making any investment decision, we strongly encourage you to conduct your own thorough research and due diligence. Consult with a qualified and licensed financial advisor who understands your individual financial situation, investment goals, and risk tolerance.</p>
+      <h2>Accuracy of Information</h2>
+      <p>While A7L Insights makes every effort to ensure the accuracy and timeliness of the information provided, we cannot guarantee that all information is current, complete, or accurate. Market conditions change rapidly, and information that was accurate at the time of publication may become outdated.</p>
+      <p>Live market data (prices, indices, dominance figures) is sourced from third-party APIs including CoinGecko and Alternative.me. We are not responsible for any inaccuracies in data provided by these third-party sources.</p>
+      <h2>No Liability</h2>
+      <p>A7L Insights, its owners, editors, contributors, and affiliates shall not be held liable for any losses, damages, or financial harm arising directly or indirectly from the use of or reliance on any information published on this website.</p>
+      <h2>Affiliate & Advertising Disclosure</h2>
+      <p>A7L Insights may display third-party advertisements through Google AdSense. The appearance of advertisements does not constitute an endorsement of the advertised products or services. We are not responsible for the content of external advertisements or the products and services they promote.</p>
     </div>
   </div>
 
-  <div id="page-terms">
+  <div id="page-terms" style="display:none;">
     <div class="page-title">Terms & Conditions</div>
-    <div class="page-subtitle">Last updated: May 2026</div>
+    <div class="page-subtitle">Last updated: May 17, 2026</div>
     <div class="page-content">
-      <p>By using A7L Insights, you agree to the following terms and conditions.</p>
-      <h2>Use of Content</h2>
-      <p>All content on A7L Insights is owned by A7L Insights unless otherwise stated. You may share our content with attribution but may not republish it in full without permission.</p>
-      <h2>User Conduct</h2>
-      <p>You agree not to use this website for any unlawful purpose or in any way that could damage, disable, or impair the website.</p>
-      <h2>Limitation of Liability</h2>
-      <p>A7L Insights shall not be liable for any damages arising from the use of or inability to use our website or content.</p>
-      <h2>Changes</h2>
-      <p>We reserve the right to update these terms at any time. Continued use of the website constitutes acceptance of the updated terms.</p>
+      <p>Please read these Terms and Conditions carefully before using the A7L Insights website located at a7linsights.vercel.app. By accessing or using our website, you confirm that you have read, understood, and agree to be bound by these Terms and Conditions.</p>
+      <h2>1. Acceptance of Terms</h2>
+      <p>By accessing and using A7L Insights, you accept and agree to these Terms and Conditions in full. If you disagree with any part of these terms, you must not use our website.</p>
+      <h2>2. Intellectual Property</h2>
+      <p>All content published on A7L Insights — including but not limited to articles, analysis, graphics, logos, and design elements — is the intellectual property of A7L Insights unless otherwise stated. You may share individual articles on social media with proper attribution to A7L Insights. You may not reproduce, republish, or redistribute our content in full without prior written permission.</p>
+      <h2>3. Permitted Use</h2>
+      <p>You may use A7L Insights for personal, non-commercial purposes only. You agree not to: use our website in any way that violates applicable laws or regulations; engage in any conduct that restricts or inhibits any other person's use of the website; transmit any unsolicited commercial communications; or attempt to gain unauthorized access to any part of the website.</p>
+      <h2>4. Third-Party Links</h2>
+      <p>Our website may contain links to third-party websites and services. These links are provided for your convenience only. A7L Insights has no control over the content of those sites and accepts no responsibility for them or for any loss or damage that may arise from your use of them.</p>
+      <h2>5. Advertisements</h2>
+      <p>A7L Insights displays third-party advertisements through Google AdSense. By using our website, you consent to the display of such advertisements. We are not responsible for the content of third-party advertisements. Clicking on advertisements may take you to third-party websites governed by their own terms and privacy policies.</p>
+      <h2>6. Disclaimer of Warranties</h2>
+      <p>A7L Insights is provided on an "as is" and "as available" basis without any warranties of any kind, either express or implied. We do not warrant that the website will be uninterrupted, error-free, or free of viruses or other harmful components.</p>
+      <h2>7. Limitation of Liability</h2>
+      <p>To the fullest extent permitted by law, A7L Insights shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or goodwill, arising out of or in connection with your use of the website or its content.</p>
+      <h2>8. Governing Law</h2>
+      <p>These Terms and Conditions shall be governed by and construed in accordance with applicable laws. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the competent courts.</p>
+      <h2>9. Changes to Terms</h2>
+      <p>We reserve the right to modify these Terms and Conditions at any time. Changes will be effective immediately upon posting to the website. Your continued use of the website after any changes constitutes your acceptance of the new terms.</p>
+      <h2>10. Contact</h2>
+      <p>If you have any questions about these Terms and Conditions, please contact us at: <a href="mailto:huasinali733@gmail.com" style="color:var(--accent);">huasinali733@gmail.com</a></p>
     </div>
   </div>
 </main>
@@ -733,6 +777,50 @@ async function buildTicker(){
     </span>`;
   }
   document.getElementById('tickerInner').innerHTML = html + html;
+  // Draw sparkline charts
+  fetchSparklines();
+}
+
+async function fetchSparklines(){
+  const d = await fetchJSON('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum&sparkline=true&price_change_percentage=24h');
+  if(!d) return;
+  d.forEach(coin=>{
+    const sp = coin.sparkline_in_7d && coin.sparkline_in_7d.price;
+    if(!sp) return;
+    const canvasId = coin.id === 'bitcoin' ? 'btcChart' : 'ethChart';
+    const up = coin.price_change_percentage_24h >= 0;
+    drawSparkline(canvasId, sp, up ? '#00ff88' : '#ef4444');
+  });
+}
+
+function drawSparkline(canvasId, data, color){
+  const canvas = document.getElementById(canvasId);
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.offsetWidth || 160;
+  const H = 36;
+  canvas.width = W;
+  canvas.height = H;
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  const range = max - min || 1;
+  ctx.clearRect(0,0,W,H);
+  ctx.beginPath();
+  data.forEach((v,i)=>{
+    const x = (i/(data.length-1))*W;
+    const y = H - ((v-min)/range)*(H-4) - 2;
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+  // Fill gradient
+  ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath();
+  const grad = ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0, color + '40');
+  grad.addColorStop(1, color + '00');
+  ctx.fillStyle = grad;
+  ctx.fill();
 }
 
 function formatLarge(n){
@@ -877,22 +965,34 @@ function openArticle(id){
   `;
 }
 
+const SITE_URL = 'https://a7linsights.vercel.app';
+
 function shareX(id){
   const p = allPosts.find(x=>x.id===id);
-  window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(p.title + ' via @aliasghar626262')}&url=${encodeURIComponent('https://a7linsights.com')}`);
+  window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(p.title + '\n\n' + SITE_URL + '\n\n#Crypto #Bitcoin via @aliasghar626262')}`);
 }
 function shareTG(id){
   const p = allPosts.find(x=>x.id===id);
-  window.open(`https://t.me/share/url?url=${encodeURIComponent('https://a7linsights.com')}&text=${encodeURIComponent(p.title)}`);
+  window.open(`https://t.me/share/url?url=${encodeURIComponent(SITE_URL)}&text=${encodeURIComponent(p.title + '\n\nA7L Insights')}`);
 }
 function copyArticleLink(id){
-  navigator.clipboard.writeText('https://a7linsights.com').then(()=>alert('Link copied!'));
+  const p = allPosts.find(x=>x.id===id);
+  const text = `${p.title}\n\n${SITE_URL}\n\n#Crypto @aliasghar626262`;
+  navigator.clipboard.writeText(text).then(()=>alert('Copied! Paste on X or Telegram.'));
 }
 function copyShareLink(type){
   let text = '';
-  if(type === 'fear-greed') text = `🧠 Crypto Fear & Greed Index: ${marketData.fg} (${marketData.fgLabel})\n\nStay informed: https://a7linsights.com\n#Crypto #Bitcoin @aliasghar626262`;
-  if(type === 'liquidations') text = `💥 Crypto Liquidations 24h: ~${document.getElementById('liqVal').textContent}\n\nReal-time intelligence: https://a7linsights.com\n#Crypto #Liquidations @aliasghar626262`;
-  navigator.clipboard.writeText(text).then(()=>alert('Copied! Ready to paste on X or Telegram.'));
+  if(type === 'fear-greed'){
+    const btcP = marketData.btc ? `\n💰 BTC: $${marketData.btc.toLocaleString()}` : '';
+    text = `🧠 Crypto Fear & Greed Index: ${marketData.fg||'--'} (${marketData.fgLabel||'--'})${btcP}\n\n📊 Real-time intelligence:\n${SITE_URL}\n\n#Crypto #Bitcoin #FearAndGreed\n@aliasghar626262`;
+  }
+  if(type === 'liquidations'){
+    const liq = document.getElementById('liqVal').textContent;
+    text = `💥 Crypto Liquidations (24h): ${liq}\n\n📉 Market getting wrecked — stay informed:\n${SITE_URL}\n\n#Crypto #Liquidations #Bitcoin\n@aliasghar626262`;
+  }
+  navigator.clipboard.writeText(text).then(()=>{
+    alert('✅ Copied! Now paste it on X or Telegram.');
+  });
 }
 
 // ===== NAVIGATION =====
@@ -907,16 +1007,22 @@ function showHome(){
 
 function hideAllPages(){
   ['about','contact','privacy','disclaimer','terms'].forEach(p=>{
-    document.getElementById('page-'+p).style.display = 'none';
+    const el = document.getElementById('page-'+p);
+    if(el) el.style.display = 'none';
   });
 }
 
 function showPage(name){
+  // Hide everything first
   document.getElementById('home-view').style.display = 'none';
   document.getElementById('article-view').style.display = 'none';
   hideAllPages();
-  document.getElementById('page-'+name).style.display = 'block';
-  window.scrollTo(0,0);
+  // Show requested page
+  const el = document.getElementById('page-'+name);
+  if(el){
+    el.style.display = 'block';
+    window.scrollTo(0,0);
+  }
 }
 
 // ===== ADMIN =====
